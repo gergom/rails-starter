@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Proyecto</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %> alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+          x
+        </button>        
+        <%= value %>
+      </div>
+    <% end %>
+
+    <% if current_user %>      
+      Bienvenido <%= current_user.email %> con id: <%= current_user.id %> 
+      <%= link_to 'Salir', destroy_user_session_path, method: :delete %>
+    <% else %>     
+      <%= link_to 'Login', new_user_session_path %>
+      <%= link_to 'Sign up', new_user_registration_path %>  
+    <% end %>    
+
+    <%= yield %>
+  </body>
+</html>

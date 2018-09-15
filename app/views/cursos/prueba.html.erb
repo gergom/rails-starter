@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Cursos Es mi listado personalizado</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Descripcion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cursos.each do |curso| %>
+      <tr>
+        <td><%= curso.titulo %></td>
+        <td><%= curso.descripcion %></td>        
+        <td><%= link_to 'Edit', edit_curso_path(curso) %></td>        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Curso', new_curso_path %>
