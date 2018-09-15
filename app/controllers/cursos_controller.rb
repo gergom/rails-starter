@@ -34,6 +34,10 @@ class CursosController < ApplicationController
 
     respond_to do |format|
       if @curso.save
+
+        @user = @curso.user
+        SendEmailJob.set(wait: 20.seconds).perform_later(@user)
+
         format.html { redirect_to @curso, notice: 'Curso was successfully created.' }
         format.json { render :show, status: :created, location: @curso }
       else

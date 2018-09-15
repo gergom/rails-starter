@@ -21,7 +21,10 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <%= hidden_field_tag 'role_id', '2'  %>
+  <div class="field">
+    <%= f.label :role_id %>    
+    <%= select(:role, :role_id, Role.all.collect { |rol| [rol.name, rol.id] }, { include_blank: "Seleccione el rol..."}) %>
+  </div>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
